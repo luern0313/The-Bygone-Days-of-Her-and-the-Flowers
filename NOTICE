@@ -1,0 +1,9 @@
+NOTICE
+
+The code of this project is open-sourced under the Apache License 2.0. Resources other than code — including images, audio, and story content — are not covered by the Apache License 2.0.
+
+Images, voice acting, and music used in this project are owned by third-party creators and therefore cannot be distributed under an open-source license. These assets are retained in packaged form solely for local compilation and execution, and are not licensed for any other use.
+
+The story content of this project (game/story/*) is original work. Feedback and suggestions for improvement are welcome and may be shared via Pull Requests.
+However, for public distribution or significant adaptation of the story content, please contact the author in advance for permission.
+Without prior authorization, the story content may not be used for commercial purposes or released under the name of any individual, including the author.
