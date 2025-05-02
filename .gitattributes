@@ -1,0 +1,2 @@
+game/archive.rpa filter=lfs diff=lfs merge=lfs -text
+game/archive2.rpa filter=lfs diff=lfs merge=lfs -text

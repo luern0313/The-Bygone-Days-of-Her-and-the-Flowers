@@ -1,0 +1,41 @@
+# Ren'Py Generated Files
+*.rapt
+*.rpyc
+*.rpyc~
+*.rpyb
+*.rpym
+*.rpymc
+*.rpyo
+*.log
+*.keystore
+
+# Miscellaneous
+__pycache__/
+*.pyc
+*.pyo
+
+# Thumbnails and Caches
+thumbnails/
+caches/
+
+# Windows Thumbs.db file
+Thumbs.db
+
+# Visual Studio Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Project-specific build settings
+# build/
+# renpy-built/
+errors.txt
+files.txt
+log.txt
+traceback.txt
+game/saves/*
+game/cache/*

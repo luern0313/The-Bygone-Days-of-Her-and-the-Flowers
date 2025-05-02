@@ -1,0 +1,52 @@
+（停止播放）
+（音乐 "ロジック・トリニティ"）
+（场景 sumeru_introduce_1）
+$ voice("voices/sumeru_introduce/1.wav")
+sumeru_introduce*：在提瓦特大陆西南的雨林与沙漠之间，坐落着智慧之国须弥。
+
+（场景 sumeru_introduce_2 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/2.wav")
+sumeru_introduce*：这里曾由初代草神大慈树王统御，她以生命之能缔造雨林、用「虚空」系统播撒智慧。
+
+（场景 sumeru_introduce_3 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/3.wav")
+sumeru_introduce*：但她却在五百年前的魔神战争中，为净化侵蚀世界树的禁忌知识，牺牲了自己。
+
+（场景 sumeru_introduce_4 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/4.wav")
+sumeru_introduce*：大慈树王逝去后，新出生的小草神纳西妲被须弥的贤者接回了教令院。
+pause 2.0
+
+（场景 sumeru_introduce_5）
+$ voice("voices/sumeru_introduce/5.wav")
+sumeru_introduce*：在须弥这个「智慧的国度」中，贤者们只崇尚有智慧的人，即使是神明也不例外。
+
+（场景 sumeru_introduce_6 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/6.wav")
+sumeru_introduce*：他们追缅大慈树王的荣光，认定新生神明不能带给他们过去那样的辉煌，于是将刚刚出生、懵懵懂懂的草神幽禁在了净善宫。
+pause 2.0
+
+（场景 sumeru_introduce_7）
+$ voice("voices/sumeru_introduce/7.wav")
+sumeru_introduce*：五百年后，愚人众找到了教令院，提出可以帮助须弥「造出他们所期望的神」。
+
+（场景 sumeru_introduce_8 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/8.wav")
+sumeru_introduce*：为了收集造神需要的能量，教令院策划了「花神诞祭的轮回」事件，将全须弥城的人困在了不断轮回的「梦境」中，以此收集人们的梦境给造神计划充能。
+
+（场景 sumeru_introduce_9 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/9.wav")
+sumeru_introduce*：好在危机关头，旅行者在纳西妲的帮助下，破坏了愚人众和贤者的计划。
+
+（场景 sumeru_introduce_10 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/10.wav")
+sumeru_introduce*：之后，在教令院学者艾尔海森、佣兵迪希雅等朋友的帮助下救出了被幽禁在静善宫的纳西妲。
+
+（场景 sumeru_introduce_11 transition=transition_dissolve_70）
+$ voice("voices/sumeru_introduce/11.wav")
+sumeru_introduce*：最后，为了彻底净化禁忌知识，纳西妲忍痛抹除了大慈树王在历史中的存在痕迹。
+
+（场景 black）
+$ voice("voices/sumeru_introduce/12.wav")
+sumeru_introduce*：从此，所有人都失去了大慈树王存在过的记忆，唯余旅行者独自将树王之名埋藏在心底深处。
+pause 2.0

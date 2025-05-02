@@ -10,9 +10,6 @@
 
 🌍&nbsp;[简体中文](README.md)&nbsp;&nbsp;|&nbsp;&nbsp;English&nbsp;&nbsp;|&nbsp;&nbsp;[日本語](README_jp.md)
 
-> [!NOTE]<br/>
-> Repository under construction...
-
 > This project is developed with **Ren'Py 8.1.3**. Please use the same version of the engine to compile the project.<br/>
 > Or download a prebuilt version from the [Releases](https://github.com/luern0313/The-Bygone-Days-of-Her-and-the-Flowers/releases) page.
 

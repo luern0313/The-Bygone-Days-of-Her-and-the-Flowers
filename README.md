@@ -10,9 +10,6 @@
 
 🌍&nbsp;简体中文&nbsp;&nbsp;|&nbsp;&nbsp;[English](README_en.md)&nbsp;&nbsp;|&nbsp;&nbsp;[日本語](README_jp.md)
 
-> [!NOTE]<br/>
-> 仓库建设中…
-
 > 使用 **Ren'Py 8.1.3** 开发，请下载相同的引擎版本编译<br/>
 > 或从 [Releases](https://github.com/luern0313/The-Bygone-Days-of-Her-and-the-Flowers/releases) 页面中下载可直接运行的版本
 

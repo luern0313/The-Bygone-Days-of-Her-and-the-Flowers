@@ -1,0 +1,495 @@
+// 变量列表
+// 0-5 问题话题是否解锁
+// 6-9 故事真相考题是否答对
+// 10、11 海龟汤1和2是否解锁
+（停止播放）
+$ choices_ren.reset_variable()
+$ choices_ren.set_variable(index=10, value=get_store()["persistent"].turtle_soup_1)
+$ choices_ren.set_variable(index=11, value=get_store()["persistent"].turtle_soup_2)
+（场景 black pause=0）
+（选项-话题）title=推理故事集 \
+> 第一期「玩具商人」 rule=10 \
+> 第二期「液体」 rule=11 \
+> {color_highlight}「返回」{/color_highlight}
+
+-> 第一期「玩具商人」
+    （CG 教令院外人群 part=2）
+    （音乐 "捜査 ～序盤 2007"）
+    G（兴奋）<callback=voice_male_sound>：接下来，我会向你讲述一个故事，而你的任务，就是推理出这个故事的真相。
+    G<callback=voice_male_sound>：在推理时，你可以向我提问，但我只会用「是」、「否」来回答你。
+    G<callback=voice_male_sound>：最后你推理完成时，向我提问的次数越少，说明你的推理能力越强！
+    G（思考）<callback=voice_male_sound>：第一个谜题是这样的。
+    $ choices_ren.set_variable(index=0, value=0)
+    $ choices_ren.set_variable(index=1, value=0)
+    $ choices_ren.set_variable(index=2, value=0)
+    $ choices_ren.set_variable(index=3, value=0)
+    $ choices_ren.set_variable(index=4, value=0)
+    $ choices_ren.set_variable(index=5, value=0)
+    （停止播放）
+    status narration
+    pause 0.5
+    ——一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……
+    ——第二天，他被发现惨死在家中。
+    status cancel narration
+    （音乐 "捜査 ～序盤 2007"）
+    旅行者（思考）<callback=voice_female_sound>：到我提问了，让我想想…
+
+    （选项-话题）title=要询问什么？ small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+    > 玩具… \
+    > 死因… \
+    > 偷窃… rule=0 \
+    > 枫丹科学院… rule=1 \
+    > 机械生命… rule=2 \
+    > {color_highlight}「我明白故事的真相了！」{/color_highlight}
+
+    -> 玩具…
+        （选项-话题）title=关于玩具… small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+        > 销量… \
+        > 制造… \
+        > 购买… \
+        > 不当来源… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 销量…
+            旅行者（思考）<callback=voice_female_sound>：玩具的销量很差吗？
+            G（正常）<callback=voice_male_sound>：不，{w=0.5}虽然不是很好，但也卖出了一些。
+            return
+        -> 制造…
+            旅行者（思考）<callback=voice_female_sound>：这种机械玩具是他自己制造的吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}他还没有这样的技术。
+            return
+        -> 购买…
+            旅行者（思考）<callback=voice_female_sound>：这种机械玩具是他向谁购买的吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}这批玩具另有来源。
+            return
+        -> 不当来源…
+            旅行者（思考）<callback=voice_female_sound>：这批玩具是通过不当来源得来的吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：是的，{w=0.5}这批机械玩具是他偷来的。
+            {color_highlight}解锁关键词 偷窃…{/color_highlight}
+            $ choices_ren.set_variable(index=0, value=1)
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 死因…
+        （选项-话题）title=关于死因… small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+        > 买家… \
+        > 同行… \
+        > 意外… \
+        > 自杀… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 买家…
+            旅行者（思考）<callback=voice_female_sound>：是玩具有质量等问题被买家杀害吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}这批玩具质量好的出奇。
+            return
+        -> 同行…
+            旅行者（思考）<callback=voice_female_sound>：是玩具很便宜等原因导致同行记恨吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}玩具价格不算便宜；{w=0.5}最重要的是，玩具并没有卖出去多少。
+            return
+        -> 意外…
+            旅行者（思考）<callback=voice_female_sound>：这个人死于意外吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 自杀…
+            旅行者（思考）<callback=voice_female_sound>：这个人是自杀吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 偷窃…
+        （选项-话题）title=关于偷窃… small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+        > 同行… \
+        > 官方机构… \
+        > 古代遗迹… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 同行…
+            旅行者（思考）<callback=voice_female_sound>：这个人是从同行手里偷来的玩具吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}没有同行能拥有这样的玩具。
+            return
+        -> 官方机构…
+            旅行者（思考）<callback=voice_female_sound>：这个人是从某个官方机构偷到的吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：是的，{w=0.5}这个商人竟然偷到大名鼎鼎的「枫丹科学院」了。
+            {color_highlight}解锁关键词 枫丹科学院…{/color_highlight}
+            $ choices_ren.set_variable(index=1, value=1)
+            return
+        -> 古代遗迹…
+            旅行者（思考）<callback=voice_female_sound>：这个人是从什么古代遗迹偷到的吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 枫丹科学院…
+        （选项-话题）title=关于枫丹科学院… small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+        > 研究用具… \
+        > 教学模型… \
+        > 实验成品… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 研究用具…
+            旅行者（思考）<callback=voice_female_sound>：这批「玩具」是研究用具吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 教学模型…
+            旅行者（思考）<callback=voice_female_sound>：这批「玩具」是教学模型吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 实验成品…
+            旅行者（思考）<callback=voice_female_sound>：这批「玩具」是某个实验的成品吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：是的，{w=0.5}这批玩具是名叫「机械生命」这一领域的实验成品。
+            {color_highlight}解锁关键词 机械生命…{/color_highlight}
+            $ choices_ren.set_variable(index=2, value=1)
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 机械生命…
+        （选项-话题）title=关于机械生命… small_style=True turtle_riddle=一名枫丹机械玩具商人在须弥出售一种全新款式的机械玩具……{p}{p}第二天，他被发现惨死在家中。 \
+        > 误会… \
+        > 出现错误… \
+        > 怨恨情绪… \
+        > 凶手… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 误会…
+            旅行者（思考）<callback=voice_female_sound>：这个玩具商人是否不了解他售卖的「玩具」是机械生命这件事？
+            G（正常）<callback=voice_male_sound>：是的，{w=0.5}他显然不知道这批「玩具」的真实身份。
+            return
+        -> 出现错误…
+            旅行者（思考）<callback=voice_female_sound>：机械生命出现了错误吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}机械生命如期运行着。
+            return
+        -> 怨恨情绪…
+            旅行者（思考）<callback=voice_female_sound>：机械生命出现了怨恨情绪吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：是的，{w=0.5}机械生命因为「家人」而产生怨恨情绪。
+            return
+        -> 凶手…
+            旅行者（思考）<callback=voice_female_sound>：是这些机械生命杀死了商人吗？
+            G（正常）<callback=voice_male_sound>：是的，{w=0.5}机械生命杀死了商人。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> {color_highlight}「我明白故事的真相了！」{/color_highlight}
+        （停止播放）
+        pause 0.5
+        （音乐 "捜査 ～核心 2002"）
+        pause 1.5
+        旅行者（正常）<callback=voice_female_sound>：我好像推理出这个故事的真相了。
+        G（堆笑）<callback=voice_male_sound>：哦，真的吗？{w=0.5}让我来问你几个问题。
+        $ choices_ren.set_variable(index=6, value=0)
+        $ choices_ren.set_variable(index=7, value=0)
+        $ choices_ren.set_variable(index=8, value=0)
+        G（兴奋）<callback=voice_male_sound>：首先，{color_highlight}商人犯了什么罪？{/color_highlight}
+        旅行者（思考）<callback=voice_female_sound>：商人…
+        （选项-话题）title=商人犯了什么罪？ small_style=True \
+        > 杀人之罪 \
+        > 偷盗之罪 \
+        > 售卖劣质产品之罪 \
+        > 没有犯罪
+        -> 偷盗之罪
+            $ choices_ren.set_variable(index=6, value=1)
+
+        G（兴奋）<callback=voice_male_sound>：然后，{color_highlight}害死商人的凶手是？{/color_highlight}
+        （选项-话题）title=害死商人的凶手是？ small_style=True \
+        > 枫丹科学院的研究员 \
+        > 自杀 \
+        > 商人售卖的「玩具」 \
+        > 没有凶手
+        -> 商人售卖的「玩具」
+            $ choices_ren.set_variable(index=7, value=1)
+
+        G（兴奋）<callback=voice_male_sound>：最后，{color_highlight}商人因什么而死？{/color_highlight}
+        （选项-话题）title=商人因什么而死？ small_style=True \
+        > 凶手因为「失去家人」而仇恨商人 \
+        > 凶手「发生了错误」 \
+        > 商人因为犯罪而被判处死刑 \
+        > 商人不了解玩具构造，被玩具中的雷元素电死
+        -> 凶手因为「失去家人」而仇恨商人
+            $ choices_ren.set_variable(index=8, value=1)
+
+        （停止播放）
+        pause 1
+        G（思考）<callback=voice_male_sound>：嗯，我看看…
+        pause 1
+        （选项-变量）var=6、7、8
+        -> True
+            （成就 ACHIEVEMENT_42）
+            G（堆笑）<callback=voice_male_sound>：不错嘛！{w=0.5}没错，看来你已经推理出了故事的真相了。
+            status narration
+            pause 0.5
+            ——商人偷来了一批枫丹科学院研究的、有人类意识的机械生命，当作是普通的机械玩具售卖。 \
+            当晚机械生命发现自己的「家人」不见了，于是杀死了商人。
+            status cancel narration
+            G（兴奋）<callback=voice_male_sound>：商人以为偷来的只是普通玩具，但没想到这些机械生命早就有了人类的情感。
+            G<callback=voice_male_sound>：就算是铁皮螺丝造的身体，里面装着的也是能爱能恨的心。
+            G（堆笑）<callback=voice_male_sound>：怎么样？{w=0.5}后面还有其他的故事，尽请期待~
+            旅行者（黑线）<callback=voice_female_sound>：还有…
+            return stack=3 offset=5
+        -> False
+            （音乐 "捜査 ～序盤 2007"）
+            G（堆笑）<callback=voice_male_sound>：好像有答错的问题哦，再想一想？
+            return stack=2
+
+
+-> 第二期「液体」
+    （场景 4_2_广场的花车）
+    （音乐 "捜査 ～序盤 2013"）
+    G（兴奋）<callback=voice_male_sound>：没错！{w=0.5}又是我的推理小故事时间！
+    G（思考）<callback=voice_male_sound>：第二个谜题是这样的。
+    $ choices_ren.set_variable(index=0, value=0)
+    $ choices_ren.set_variable(index=1, value=0)
+    $ choices_ren.set_variable(index=2, value=0)
+    $ choices_ren.set_variable(index=3, value=0)
+    $ choices_ren.set_variable(index=4, value=0)
+    $ choices_ren.set_variable(index=5, value=0)
+    （停止播放）
+    status narration
+    pause 0.5
+    ——他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……
+    ——但当晚，他死了，这瓶液体也不翼而飞。
+    status cancel narration
+    （音乐 "捜査 ～序盤 2013"）
+    旅行者（思考）<callback=voice_female_sound>：到我提问了，让我想想…
+
+    （选项-话题）title=要询问什么？ small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+    > 他… \
+    > 财富… \
+    > 他的死亡… \
+    > 女朋友… rule=0 \
+    > 女朋友的死… rule=1 \
+    > 河… rule=2 \
+    > {color_highlight}「我明白故事的真相了！」{/color_highlight}
+
+    -> 他…
+        （选项-话题）title=关于他… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 炼金术师… \
+        > 探险家… \
+        > 研究员… \
+        > 小偷… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 炼金术师…
+            旅行者（思考）<callback=voice_female_sound>：他是一名炼金术师吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}他不是炼金术师。
+            return
+        -> 探险家…
+            旅行者（思考）<callback=voice_female_sound>：他是一名探险家吗？
+            G（正常）<callback=voice_male_sound>：不，{w=0.5}他不是探险家。
+            return
+        -> 研究员…
+            旅行者（思考）<callback=voice_female_sound>：他是一名研究员吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（正常）<callback=voice_male_sound>：是的，{w=0.5}他是一名教令院的学者，这瓶液体是他的研究成果。
+            return
+        -> 小偷…
+            旅行者（思考）<callback=voice_female_sound>：他是一名小偷吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 财富…
+        （选项-话题）title=关于财富… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 液体很好喝… \
+        > 液体是生活必需品… \
+        > 不正当的… \
+        > 他需要… \
+        > 嘴角上扬… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 液体很好喝…
+            旅行者（思考）<callback=voice_female_sound>：是因为液体很好喝所以能卖出很多钱吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}液体的味道平平无奇。
+            return
+        -> 液体是生活必需品…
+            旅行者（思考）<callback=voice_female_sound>：是因为大家都需要这种液体所以能卖出很多钱吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 不正当的…
+            旅行者（思考）<callback=voice_female_sound>：液体带来的金钱是不正当的吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 他需要…
+            旅行者（思考）<callback=voice_female_sound>：他很需要金钱吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}他更需要其他东西。
+            return
+        -> 嘴角上扬…
+            旅行者（思考）<callback=voice_female_sound>：他嘴角上扬是因为他想到自己将获得金钱与名誉吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：否，{w=0.5}他的嘴角上扬是因为想到了自己的女朋友。
+            {color_highlight}解锁关键词 他的女朋友…{/color_highlight}
+            $ choices_ren.set_variable(index=0, value=1)
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 他的死亡…
+        （选项-话题）title=关于他的死亡… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 保护液体而死… \
+        > 被同行陷害… \
+        > 意外… \
+        > 谋杀… \
+        > 自杀… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 保护液体而死…
+            旅行者（思考）<callback=voice_female_sound>：他是因为保护液体而死吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}液体很安全。
+            return
+        -> 被同行陷害…
+            旅行者（思考）<callback=voice_female_sound>：他是因为被同行陷害而死吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}不是这样的。
+            return
+        -> 意外…
+            旅行者（思考）<callback=voice_female_sound>：他的死亡是意外吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}并不是意外。
+            return
+        -> 谋杀…
+            旅行者（思考）<callback=voice_female_sound>：他是被谋杀而死吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 自杀…
+            旅行者（思考）<callback=voice_female_sound>：他是自杀吗？
+            G（正常）<callback=voice_male_sound>：是的，{w=0.5}他是自杀而死的。究竟为什么呢…
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 女朋友…
+        （选项-话题）title=女朋友… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 想要财富… \
+        > 杀了他… \
+        > 还活着… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 想要财富…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友很想要财富吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 杀了他…
+            旅行者（思考）<callback=voice_female_sound>：是他的女朋友杀了他吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}不是这样的。
+            return
+        -> 还活着…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友还活着吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：不，{w=0.5}她的女朋友已经不在人世了。
+            {color_highlight}解锁关键词 女朋友的死…{/color_highlight}
+            $ choices_ren.set_variable(index=1, value=1)
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 女朋友的死…
+        （选项-话题）title=女朋友的死… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 自杀… \
+        > 被他杀害… \
+        > 液体… \
+        > 病痛… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 自杀…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友还活着吗？
+            G（堆笑）<callback=voice_male_sound>：不错的问题！
+            G（兴奋）<callback=voice_male_sound>：是的，{w=0.5}他的女朋友得了一种绝症，忍受不了病痛的折磨自杀了。
+            G（思考）<callback=voice_male_sound>：值得一提的是，她是投河而死的。
+            {color_highlight}解锁关键词 河…{/color_highlight}
+            $ choices_ren.set_variable(index=2, value=1)
+            return
+        -> 被他杀害…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友是被他杀害了吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 液体…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友是因液体而死吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 病痛…
+            旅行者（思考）<callback=voice_female_sound>：他的女朋友是因为病痛而死吗？
+            G（正常）<callback=voice_male_sound>：否，{w=0.5}他的女朋友确实得了一种病，但她的死亡不是因为这个。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> 河…
+        （选项-话题）title=河… small_style=True turtle_riddle=他看着面前瓶中的液体，不自觉嘴角上扬，这瓶液体将会给他带来无尽的财富……{p}{p}但当晚，他死了，这瓶液体也不翼而飞。 \
+        > 他… \
+        > 河水会让药水失效… \
+        > 液体… \
+        > {color_highlight}「返回」{/color_highlight}
+        -> 他…
+            旅行者（思考）<callback=voice_female_sound>：他也在河中吗？
+            G（正常）<callback=voice_male_sound>：是的。
+            return
+        -> 河水会让药水失效…
+            旅行者（思考）<callback=voice_female_sound>：河水会让药水失效吗？
+            G（正常）<callback=voice_male_sound>：否。
+            return
+        -> 液体…
+            旅行者（思考）<callback=voice_female_sound>：那瓶液体也在河中吗？
+            G（正常）<callback=voice_male_sound>：是的，{w=0.5}是他撒入河中的。
+            return
+        -> {color_highlight}「返回」{/color_highlight}
+            return stack=2
+
+    -> {color_highlight}「我明白故事的真相了！」{/color_highlight}
+        （停止播放）
+        pause 0.5
+        （音乐 "捜査 ～核心 2002"）
+        pause 1.5
+        旅行者（正常）<callback=voice_female_sound>：我好像推理出这个故事的真相了。
+        G（堆笑）<callback=voice_male_sound>：哦，真的吗？{w=0.5}让我来问你几个问题。
+        $ choices_ren.set_variable(index=6, value=0)
+        $ choices_ren.set_variable(index=7, value=0)
+        $ choices_ren.set_variable(index=8, value=0)
+        G（兴奋）<callback=voice_male_sound>：首先，{color_highlight}这种液体是？{/color_highlight}
+        （选项-话题）title=这种液体是？ small_style=True \
+        > 非常好喝的饮料 \
+        > 能治病的药 \
+        > 能毒害他人的毒剂 \
+        > 这种液体被人替换了，只是普通的水
+        -> 能治病的药
+            $ choices_ren.set_variable(index=6, value=1)
+
+        G（兴奋）<callback=voice_male_sound>：然后，{color_highlight}他为什么会死？{/color_highlight}
+        （选项-话题）title=他为什么会死？ small_style=True \
+        > 被同行陷害致死 \
+        > 被女朋友喂下液体而死 \
+        > 跳河而死 \
+        > 他没有真正死亡
+        -> 跳河而死
+            $ choices_ren.set_variable(index=7, value=1)
+
+        G（兴奋）<callback=voice_male_sound>：最后，{color_highlight}故事的最后，这瓶液体去哪了？{/color_highlight}
+        （选项-话题）title=故事的最后，这瓶液体去哪了？ small_style=True \
+        > 被倒进了河中 \
+        > 被其他教令院的学者夺去了 \
+        > 被他的女朋友喝下了 \
+        > 被他送给了其他人
+        -> 被倒进了河中
+            $ choices_ren.set_variable(index=8, value=1)
+
+        （停止播放）
+        pause 1
+        G（思考）<callback=voice_male_sound>：嗯，我看看…
+        pause 1
+        （选项-变量）var=6、7、8
+        -> True
+            （成就 ACHIEVEMENT_43）
+            G（堆笑）<callback=voice_male_sound>：不错嘛！{w=0.5}没错，看来你已经推理出了故事的真相了。
+            status narration
+            pause 0.5
+            ——他是教令院的一位学者。他的女友得了一种绝症，他不顾一切的研制这种病治疗的药物。 \
+           这天，药物终于研究完成，但同一天，他的女朋友忍受不了病痛的折磨，选择了投海自杀。 \
+           绝望的他将药物倒入河中，随后也跳河而死。
+            status cancel narration
+            G（兴奋）<callback=voice_male_sound>：他跑赢时间换来的药，却没跑赢爱人最后一丝希望崩塌的速度。
+            G<callback=voice_male_sound>：原来世上最烈的毒不是绝症，是他眼睁睁看着拼尽全力的未来，在触手可及的地方破碎。
+            G（堆笑）<callback=voice_male_sound>：我的推理故事还不错吧~
+            旅行者（思考）<callback=voice_female_sound>：…
+            return stack=3 offset=5
+        -> False
+            （音乐 "捜査 ～序盤 2013"）
+            G（堆笑）<callback=voice_male_sound>：好像有答错的问题哦，再想一想？
+            return stack=2
+
+-> {color_highlight}「返回」{/color_highlight}
+    pause 0.1
